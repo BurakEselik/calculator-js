@@ -9,7 +9,16 @@ function screen_refresh(btn) {
 
     if (calc_screen1[0] == "0"){
         document.getElementById("calcScreen").value = calc_screen1.slice(1, calc_screen1.length)
-    }
+    };
+
+
+    if (calc_screen1[calc_screen1.length -2] == "+" || calc_screen1[calc_screen1.length -2] == "-" || calc_screen1[calc_screen1.length -2] == "x" || calc_screen1[calc_screen1.length -2] == "÷"){
+        
+        var exp = calc_screen1[calc_screen1.length -1];
+        if (exp != "1" && exp != "2" && exp != "3" && exp != "4" && exp != "5" && exp != "6" && exp != "7" && exp != "8" && exp != "9" && exp != "0"){
+            document.getElementById("calcScreen").value = calc_screen1.slice(0, calc_screen1.length -2) + calc_screen1[calc_screen1.length -1]
+        };
+    };
 
   };
 
@@ -19,8 +28,14 @@ function clear_screen(){
 };
 
 function calculate(){
-    
-}
+    let new_screen_text = document.getElementById("calcScreen").value.replace("x", "*").replace("÷", "/")
+    let exp2 = new_screen_text[new_screen_text.length - 1]
+
+    if (exp2 != "*" && exp2 != "÷" && exp2 != "-" && exp2 != "+"){
+        document.getElementById("calcScreen").value = eval(new_screen_text)
+    };
+
+};
 
 window.onload = function(){
     var buttons = document.getElementsByTagName("input");
